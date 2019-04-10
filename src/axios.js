@@ -20,7 +20,7 @@ axios.interceptors.request.use(config => {
 
 axios.interceptors.response.use(response => {
   if (response.data.code && response.data.code < 0) {
-    switch(response.data.code) {
+    switch (response.data.code) {
       case -200:
         vue.$jsRouter.replace({
           path: "/"

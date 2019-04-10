@@ -14,7 +14,7 @@
           </Input>
         </FormItem>
         <FormItem prop="code" class="form-item" style="margin-bottom: 47px;">
-          <img src="@/assets/bg.jpg" alt="" class="code-img">
+          <span class="code-img" v-html="codeImg" @click="getCaptcha"></span>
           <Input type="text" v-model="loginFormInfo.code" placeholder="验证码" autocomplete="off">
           <Icon type="ios-key-outline" slot="prepend"></Icon>
           </Input>
@@ -33,14 +33,34 @@ import { mapState } from 'vuex';
 export default {
   name: 'Login',
 
+  data() {
+    return {
+      codeKey: '',
+      codeImg: ''
+    }
+  },
+
+  created() {
+    this.getCaptcha();
+  },
+
   computed: {
     ...mapState(['loginFormInfo'])
   },
 
   methods: {
+    // 登录
     async login() {
       this.$store.dispatch({
-        type: 'login'
+        type: 'login',
+        key: this.codeKey
+      });
+    },
+    // 获取验证码
+    getCaptcha() {
+      this.$axios.get('/getCaptcha').then(res => {
+        this.codeKey = res.key;
+        this.codeImg = res.data;
       });
     }
   }
