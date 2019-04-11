@@ -8,7 +8,7 @@ import StartNav from '@/views/StartNav/StartNav';
 // 主架构
 import Layout from '@/views/Layout/Layout';
 // 句子
-import Sentence from '@/views/Sentence/Sentence';
+import WorkRecord from '@/views/WorkRecord/WorkRecord';
 
 Vue.use(Router)
 
@@ -28,9 +28,9 @@ export default new Router({
       name: 'layout',
       component: Layout,
       children: [{
-        path: '/sentence',
-        name: 'sentence',
-        component: Sentence
+        path: '/workrecord',
+        name: 'workrecord',
+        component: WorkRecord
       }]
     }
   ]

@@ -1,11 +1,15 @@
 <template>
   <div class="nav-wrap">
-    <div class="nav-item">
+    <div class="nav-item" @click="navTo('user')">
       <Icon type="md-people" />
       <div class="nav-desc">user</div>
     </div>
-    <div class="nav-item">
+    <div class="nav-item" @click="navTo('workRecord')">
       <Icon type="md-list-box" />
+      <div class="nav-desc">workRecord</div>
+    </div>
+    <div class="nav-item" @click="navTo('sentence')">
+      <Icon type="md-book" />
       <div class="nav-desc">sentence</div>
     </div>
   </div>
@@ -13,7 +17,22 @@
 
 <script>
 export default {
-  name: 'StartNav'
+  name: 'StartNav',
+
+  methods: {
+    navTo(name) {
+      switch (name) {
+        case 'workRecord':
+          this.$router.push({
+            path: '/workrecord'
+          });
+          break;
+        default:
+          this.$Message.info('开发中');
+          break;
+      }
+    }
+  }
 }
 </script>
 
